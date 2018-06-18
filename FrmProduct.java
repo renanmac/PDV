@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.JFileChooser;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -10,7 +11,7 @@ public class FrmProduct extends JDialog implements ActionListener
     private JTextField txbName;
     private JTextField txbDescription;
     private JTextField txbPrice;
-    private JFileChooser txbImage;
+    private JFileChooser chooseImage;
     private boolean Resp;
 
     private JButton createButton(Container c, String text)
@@ -22,21 +23,18 @@ public class FrmProduct extends JDialog implements ActionListener
        return btn;
     }
 
-    private JFileChooser createFileChooser(Container c, String text)
-    {
+    private JFileChooser createFileChooser(Container c){
       JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter(
+      chooser.setPreferredSize(new Dimension(550,350));
+      javax.swing.filechooser.FileNameExtensionFilter filter = new javax.swing.filechooser.FileNameExtensionFilter(
         "JPEG, JPG & GIF Images", "jpeg", "jpg", "gif");
-    chooser.setFileFilter(filter);
-    int returnVal = chooser.showOpenDialog(parent);
-    if(returnVal == JFileChooser.APPROVE_OPTION) {
-       System.out.println("You chose to open this file: " +
-            chooser.getSelectedFile().getName());
-    }
-       btn.setPreferredSize(new Dimension(130,25));
-       btn.addActionListener(this);
-       c.add(btn);
-       return btn;
+      chooser.setFileFilter(filter);
+      c.add(chooser);
+      int returnVal = chooser.showOpenDialog(null);
+      if(returnVal == JFileChooser.APPROVE_OPTION) {
+       return chooser;
+      }
+      return null;
     }
      
     private JTextField createField(Container c, String text, int Largura)
@@ -57,8 +55,8 @@ public class FrmProduct extends JDialog implements ActionListener
     {
        setTitle("Produto");
        setSize(400,250);
-       setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);     //fechar a janela
-       setLocationRelativeTo(null); 			   //centraliza a janela
+       setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+       setLocationRelativeTo(null);
        setModal(true);
        
        JPanel pnlButtons = new JPanel();
@@ -68,6 +66,7 @@ public class FrmProduct extends JDialog implements ActionListener
 
        JPanel panelField = new JPanel();
        getContentPane().add(panelField, BorderLayout.CENTER);
+       chooseImage = createFileChooser(panelField);
        txbCode = createField(panelField, "Código", 10);
        txbName = createField(panelField, "Nome", 25);
        txbDescription = createField(panelField, "Descrição", 25);
@@ -99,7 +98,7 @@ public class FrmProduct extends JDialog implements ActionListener
 
     private static FrmProduct frame=null;
     
-    public static boolean executar(Product p)
+    public static boolean execute(Product p)
     {
        if (frame==null)
           frame = new FrmProduct();
@@ -118,11 +117,11 @@ public class FrmProduct extends JDialog implements ActionListener
        a.setDescription("Produto teste");
        a.setPrice(5.99f);
  
-       System.out.println(FrmProduct.executar(a));
-       System.out.println("Nome:"+a.getName());
-       System.out.println("RGU:"+a.getCode());
-       System.out.println("Nota1:"+a.getDescription());
-       System.out.println("Nota2:"+a.getPrice());
+       System.out.println(FrmProduct.execute(a));
+       System.out.println("Nome: "+a.getName());
+       System.out.println("Código: "+a.getCode());
+       System.out.println("Descrição: "+a.getDescription());
+       System.out.println("Preço: "+a.getPrice());
        System.exit(0);
     }
 }

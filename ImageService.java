@@ -25,6 +25,17 @@ public class ImageService{
 		return img;
 	}
 
+	public static Image imagefromPath(String path){
+		try{
+			FileInputStream input = new FileInputStream(path);
+			Image img = ImageIO.read(input);
+			return img;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		} 
+	}
+
 	/*TESTE DA CLASSE
 	public static void main(String s[]){
 		byte[] b = ImageService.imagetobytes("tomate.jpeg");
