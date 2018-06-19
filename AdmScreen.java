@@ -8,6 +8,13 @@ public class AdmScreen extends JFrame implements ActionListener{
     private JButton btnAlterar;
     private JButton btnBuscar;
     private JButton btnSair;
+    private JButton btnInseriru;
+    private JButton btnRemoveru;
+    private JButton btnAlteraru;
+    private JButton btnBuscaru;
+    private JButton btnSairu;
+    private JButton btnUsuarios;
+    private JButton btnProdutos;
     private CtrlProducts ctrlProducts;
     private CtrlUsers ctrlUsers;
     private int escolhido;
@@ -22,14 +29,27 @@ public class AdmScreen extends JFrame implements ActionListener{
        return btn;
     }
 
-    public AdmScreen(){
-    	setTitle("Cadastro de Usuários");
-    	setSize(500,300);
-
-    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	setLocationRelativeTo(null);
+    private JPanel usersScreen(){
+    	JPanel userpnl = new JPanel(new BorderLayout());
     	JPanel pnlButtons = new JPanel();
-    	getContentPane().add(pnlButtons, BorderLayout.NORTH);
+    	userpnl.add(pnlButtons, BorderLayout.NORTH);
+    	btnInseriru = createButton(pnlButtons, "Inserir");
+    	btnRemoveru = createButton(pnlButtons, "Remover");
+    	btnAlteraru = createButton(pnlButtons, "Alterar");
+    	btnBuscaru = createButton(pnlButtons, "Buscar");
+    	btnSairu = createButton(pnlButtons, "Sair");
+
+    	ctrlUsers = new CtrlUsers();
+    	userpnl.add(ctrlUsers, BorderLayout.CENTER);
+    	ctrlUsers.update();
+
+    	return userpnl;
+    }
+
+    private JPanel productsScreen(){
+    	JPanel productpnl = new JPanel(new BorderLayout());
+    	JPanel pnlButtons = new JPanel();
+    	productpnl.add(pnlButtons, BorderLayout.NORTH);
 
     	btnInserir = createButton(pnlButtons, "Inserir");
     	btnRemover = createButton(pnlButtons, "Remover");
@@ -38,24 +58,71 @@ public class AdmScreen extends JFrame implements ActionListener{
     	btnSair = createButton(pnlButtons, "Sair");
 
     	ctrlProducts = new CtrlProducts();
-    	getContentPane().add(ctrlProducts, BorderLayout.CENTER);
+    	productpnl.add(ctrlProducts, BorderLayout.CENTER);
     	ctrlProducts.update();
 
-    	/*ctrlUsers = new CtrlUsers();
-    	getContentPane().add(ctrlUsers, BorderLayout.CENTER);
-    	ctrlUsers.update();*/
+    	return productpnl;
+    }
 
+    public AdmScreen(){
+    	setTitle("Módulo Admin");
+    	setSize(500,300);
+    	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	setLocationRelativeTo(null);
+
+    	JTabbedPane m = new JTabbedPane();
+    	m.setPreferredSize(new Dimension(495, 295));
+    	m.add(usersScreen(), "Usuários");
+    	m.add(productsScreen(), "Produtos");
+    	//JPanel m = new JPanel();
+    	//m.add(u);
+    	//m.add(p);*/
+    	getContentPane().add(m, BorderLayout.CENTER);
     }
 
 	public void actionPerformed(ActionEvent evt){
 		JButton btn = (JButton)evt.getSource();
 		if (btn==btnInserir){
+			Product p = new Product();
+			if (FrmProduct.execute(p)){
+				p.insertProduct(p);
+				ctrlProducts.update();
+			}
+		}else if (btn==btnRemover){
+			Product p = ctrlProducts.selectedProduct();
+			if (p==null)
+				JOptionPane.showMessageDialog(null,"Nenhum Produto selecionado!");
+			else if (JOptionPane.showConfirmDialog( null,"Deseja realmente remover o Produto "+p.getCode()+ " - "+p.getName()+"?",
+					"Remover",JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+				p.deleteProduct(p.getCode());
+				ctrlProducts.update();	
+			} 
+		}else if (btn==btnAlterar){
+			Product p = ctrlProducts.selectedProduct();
+			if (p==null)
+				JOptionPane.showMessageDialog(null,"Nenhum Produto selecionado!");
+			else{
+				int code = p.getCode();
+				if (FrmProduct.execute(p)){ 
+					p.updateProduct(code, p);
+					ctrlProducts.update();	 
+				}
+			} 
+		}
+		else if (btn==btnBuscar)
+		{
+		}
+		else if (btn==btnSair)
+		{
+			setVisible(false);
+		}
+		else if (btn==btnInseriru){
 			User u = new User();
 			if (FrmUser.execute(u)){
 				u.insertUser(u);
 				ctrlUsers.update();
 			}
-		}else if (btn==btnRemover){
+		}else if (btn==btnRemoveru){
 			User u = ctrlUsers.selectedUser();
 			if (u==null)
 				JOptionPane.showMessageDialog(null,"Nenhum User selecionado!");
@@ -64,7 +131,7 @@ public class AdmScreen extends JFrame implements ActionListener{
 				u.deleteUser(u.getCPF());
 				ctrlUsers.update();	
 			} 
-		}else if (btn==btnAlterar){
+		}else if (btn==btnAlteraru){
 			User u = ctrlUsers.selectedUser();
 			if (u==null)
 				JOptionPane.showMessageDialog(null,"Nenhum Usuário selecionado!");
@@ -76,12 +143,16 @@ public class AdmScreen extends JFrame implements ActionListener{
 				}
 			} 
 		}
-		else if (btn==btnBuscar)
+		else if (btn==btnBuscaru)
 		{
 		}
-		else if (btn==btnSair)
+		else if (btn==btnSairu)
 		{
 			setVisible(false);
+		}else if (btn==btnUsuarios){
+			usersScreen();
+		}else if (btn==btnProdutos){
+			productsScreen();
 		}
 	}
 
