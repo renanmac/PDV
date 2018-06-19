@@ -25,10 +25,10 @@ public class ImageService{
 		return img;
 	}
 
-	public static Image imagefromPath(String path){
+	public static BufferedImage imagefromPath(String path){
 		try{
 			FileInputStream input = new FileInputStream(path);
-			Image img = ImageIO.read(input);
+			BufferedImage img = ImageIO.read(input);
 			return img;
 		}catch(Exception e){
 			e.printStackTrace();
