@@ -6,17 +6,8 @@ public class User{
 	private String Password;
 	private String Username;
 	private int Profile;
-	private int Block;
+	private int Block; 
 	private SQLiteDB db = new SQLiteDB();
-	
-	/*public User(String name, String cpf, String password, String username, int profile, int block){
-		setName(name);
-		setCPF(cpf);
-		setPassword(password);
-		setUsername(username);
-		setProfile(profile);
-		setBlock(block);
-	}*/
 
 	public String  getName()	 { return Name;}
 	public String  getCPF()		 { return CPF;}
@@ -75,19 +66,4 @@ public class User{
 		db.dropDB("Users");
 	}
 
-/* *************Apenas para testar a classe !*********************/
-public static void main(String s[]){
-	User u = new User();
-	u.setPassword("User");
-	String senha = u.hashpass("");
-	if(senha.equals(u.getPassword())){
-		System.out.println("Iguais");
-		System.out.println(senha);
-	}else{
-		System.out.println(u.getPassword());
-		System.out.println(senha.length());
-		
-	}
-
-}
 }

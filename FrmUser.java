@@ -45,8 +45,7 @@ public class FrmUser extends JDialog implements ActionListener
         panel.add(lbl);
       }
       ((FlowLayout)panel.getLayout()).setAlignment(FlowLayout.LEFT);
-      Checkbox chk = new Checkbox(text, state);
-      chk.setBorderPainted(false);
+      Checkbox chk = new Checkbox(checktext, state);
       panel.add(chk);
       c.add(panel);
       return chk;
@@ -54,7 +53,7 @@ public class FrmUser extends JDialog implements ActionListener
    
     private FrmUser()
     {
-       setTitle("Produto");
+       setTitle("User");
        setSize(400,250);
        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);     //fechar a janela
        setLocationRelativeTo(null); 			   //centraliza a janela
@@ -86,6 +85,7 @@ public class FrmUser extends JDialog implements ActionListener
        txbCPF.setText(u.getCPF());
        txbProfile.setText(""+u.getProfile());
        txbUsername.setText(u.getUsername());
+       txbPassword.setText(u.getPassword());
        chkBlock.setState(u.getBlock()==1?true:false);
        //txbImage.setText(""+p.getNota2());
     }
