@@ -2,7 +2,7 @@
 
 Ponto de Vendas composto de 3 módulos Administrador, Gerente e Operador.
 
-###Para fazer:
+### Para fazer:
 	1. Tela de Splash;
 	2. Tela de Login;
 	3. Módulo Gerente, inclusive telas;
@@ -13,7 +13,7 @@ Ponto de Vendas composto de 3 módulos Administrador, Gerente e Operador.
 	8. Importar e exportar para Arquivo;
 	9. Por enquanto é isso;
 
-###Feito:
+### Feito:
 	1. Classe Usuário, Produto e Venda;
 	2. Integração com o Banco de Dados;
 	3. FrmUser;
