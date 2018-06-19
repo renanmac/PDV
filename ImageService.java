@@ -27,6 +27,7 @@ public class ImageService{
 			Image img = ImageIO.read(input);
 			return img;
 		}catch(Exception e){
+			e.printStackTrace();
 			return null;
 		}
 	}

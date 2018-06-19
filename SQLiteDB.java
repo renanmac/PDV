@@ -15,11 +15,11 @@ import java.util.*;
 public class SQLiteDB
 {
   private static String _STR_CONEXAO_ = "jdbc:sqlite:PDV.db";
-  public static void main(String []args){
+  /*public static void main(String []args){
 
     SQLiteDB db = new SQLiteDB();
     try{
-      /*User u = new User();
+      User u = new User();
       u.setName("User1");
       u.setBlock(0);
       u.setCPF("123");
@@ -38,7 +38,7 @@ public class SQLiteDB
       db.insertUser(u2);
 
       Product p = new Product();
-      p.setCode(1);
+      p.setCode(1151);
       p.setName("Product1");
       p.setDescription("Descricao");
       p.setPrice(1.99f);
@@ -46,7 +46,7 @@ public class SQLiteDB
       db.insertProduct(p);
 
       Product p2 = new Product();
-      p2.setCode(2);
+      p2.setCode(26848);
       p2.setName("Products2");
       p2.setDescription("Descricao2");
       p2.setPrice(10f);
@@ -68,16 +68,12 @@ public class SQLiteDB
       sale2.setProduct(p);
       db.insertSale(sale2);
 
-      Product u3 = db.getProduct(1);
-      System.out.println("Nome: "+u3.getName());
-      System.out.println("byte: "+u3.getImage());*/
-
     }catch(Exception e){
       e.printStackTrace();
       System.exit(0);
     }
   }
-
+*/
   public SQLiteDB(){
     try{
       //1. carregar para a memoria a classe do driver JDBC org.sqlite.JDBC

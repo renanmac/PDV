@@ -8,13 +8,13 @@ public class AdmScreen extends JFrame implements ActionListener{
     private JButton btnAlterar;
     private JButton btnBuscar;
     private JButton btnSair;
+    private JButton btnImportar;
+    private JButton btnExportar;
     private JButton btnInseriru;
     private JButton btnRemoveru;
     private JButton btnAlteraru;
     private JButton btnBuscaru;
     private JButton btnSairu;
-    private JButton btnUsuarios;
-    private JButton btnProdutos;
     private CtrlProducts ctrlProducts;
     private CtrlUsers ctrlUsers;
     private int escolhido;
@@ -55,6 +55,8 @@ public class AdmScreen extends JFrame implements ActionListener{
     	btnRemover = createButton(pnlButtons, "Remover");
     	btnAlterar = createButton(pnlButtons, "Alterar");
     	btnBuscar = createButton(pnlButtons, "Buscar");
+    	btnImportar = createButton(pnlButtons, "Importar");
+    	btnExportar = createButton(pnlButtons, "Exportar");
     	btnSair = createButton(pnlButtons, "Sair");
 
     	ctrlProducts = new CtrlProducts();
@@ -74,9 +76,6 @@ public class AdmScreen extends JFrame implements ActionListener{
     	m.setPreferredSize(new Dimension(495, 295));
     	m.add(usersScreen(), "Usuários");
     	m.add(productsScreen(), "Produtos");
-    	//JPanel m = new JPanel();
-    	//m.add(u);
-    	//m.add(p);*/
     	getContentPane().add(m, BorderLayout.CENTER);
     }
 
@@ -108,11 +107,16 @@ public class AdmScreen extends JFrame implements ActionListener{
 					ctrlProducts.update();	 
 				}
 			} 
-		}
-		else if (btn==btnBuscar)
-		{
-		}
-		else if (btn==btnSair)
+		}else if (btn==btnBuscar){
+		}else if (btn==btnImportar){
+			ProdTXT txt = new ProdTXT("produtos.txt");
+			txt.importar();
+			ctrlProducts.update();
+		}else if (btn==btnExportar){
+			ProdTXT txt = new ProdTXT("produtos.txt");
+			txt.exportar();
+			ctrlProducts.update();
+		}else if (btn==btnSair)
 		{
 			setVisible(false);
 		}
@@ -149,11 +153,11 @@ public class AdmScreen extends JFrame implements ActionListener{
 		else if (btn==btnSairu)
 		{
 			setVisible(false);
-		}else if (btn==btnUsuarios){
+		}/*else if (btn==btnUsuarios){
 			usersScreen();
 		}else if (btn==btnProdutos){
 			productsScreen();
-		}
+		}*/
 	}
 
 	public static void main(String s[]){
