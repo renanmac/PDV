@@ -1,6 +1,6 @@
 public class Product{
 
-	//private SQLiteDB db = new SQLiteDB();
+	private SQLiteDB db = new SQLiteDB();
 	private int Code;
 	private String Name, Description;
 	private float Price;
@@ -29,7 +29,7 @@ public class Product{
 			throw new Error("O preço deve ser um número maior ou igual a zero!");
 	}
 
-	/*public void insertProduct(Product p){
+	public void insertProduct(Product p){
 		db.insertProduct(p);
 	}
 
@@ -51,6 +51,6 @@ public class Product{
 
 	public void dropDB(){
 		db.dropDB("Products");
-	}*/
+	}
 
 }

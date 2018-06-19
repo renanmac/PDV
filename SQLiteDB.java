@@ -35,7 +35,7 @@ public class SQLiteDB
       u2.setUsername("jedi");
       u2.setPassword("tralala");
       u2.setProfile(2);
-      db.insertUser(u2);*/
+      db.insertUser(u2);
 
       Product p = new Product();
       p.setCode(1);
@@ -45,7 +45,7 @@ public class SQLiteDB
       p.setImagePath("tomate.jpeg");
       db.insertProduct(p);
 
-      /*Product p2 = new Product();
+      Product p2 = new Product();
       p2.setCode(2);
       p2.setName("Products2");
       p2.setDescription("Descricao2");
@@ -66,11 +66,11 @@ public class SQLiteDB
       sale2.setProduct(p);
       sale2.setProduct(p);
       sale2.setProduct(p);
-      db.insertSale(sale2);*/
+      db.insertSale(sale2);
 
       Product u3 = db.getProduct(1);
       System.out.println("Nome: "+u3.getName());
-      System.out.println("byte: "+u3.getImage());
+      System.out.println("byte: "+u3.getImage());*/
 
     }catch(Exception e){
       e.printStackTrace();
