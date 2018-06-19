@@ -18,6 +18,7 @@ public class CtrlProducts extends JPanel{
         case 2: return "Nome";
         case 3: return "Descrição";
         case 4: return "Preço";
+        //case 5: return "Imagem";
         default: return "desconhecido";
       }
     }
@@ -34,6 +35,7 @@ public class CtrlProducts extends JPanel{
         case 2: return p.getName();
         case 3: return p.getDescription();
         case 4: return p.getPrice();
+        //case 5: return ImageService.bytestoimage(p.getImage());
         default: return "desconhecido";
       }
     }

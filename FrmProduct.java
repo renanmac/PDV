@@ -11,7 +11,7 @@ public class FrmProduct extends JDialog implements ActionListener
     private JTextField txbName;
     private JTextField txbDescription;
     private JTextField txbPrice;
-    private JFileChooser chooseImage;
+    private ImageBox imageBox;
     private boolean Resp;
 
     private JButton createButton(Container c, String text)
@@ -21,20 +21,6 @@ public class FrmProduct extends JDialog implements ActionListener
        btn.addActionListener(this);
        c.add(btn);
        return btn;
-    }
-
-    private JFileChooser createFileChooser(Container c){
-      JFileChooser chooser = new JFileChooser();
-      chooser.setPreferredSize(new Dimension(550,350));
-      javax.swing.filechooser.FileNameExtensionFilter filter = new javax.swing.filechooser.FileNameExtensionFilter(
-        "JPEG, JPG & GIF Images", "jpeg", "jpg", "gif");
-      chooser.setFileFilter(filter);
-      c.add(chooser);
-      int returnVal = chooser.showOpenDialog(null);
-      if(returnVal == JFileChooser.APPROVE_OPTION) {
-       return chooser;
-      }
-      return null;
     }
      
     private JTextField createField(Container c, String text, int Largura)
@@ -50,11 +36,22 @@ public class FrmProduct extends JDialog implements ActionListener
        c.add(panel);
        return tbx;
     }
+
+    private ImageBox createImageBox(Container c){
+      JPanel panel = new JPanel();
+      panel.setPreferredSize(new Dimension(285, 335));
+      ((FlowLayout)panel.getLayout()).setAlignment(FlowLayout.CENTER);
+      imageBox = new ImageBox();
+      imageBox.setPreferredSize(new Dimension(280,330));
+      panel.add(imageBox);
+      c.add(panel);
+      return imageBox;
+    }
    
     private FrmProduct()
     {
        setTitle("Produto");
-       setSize(400,250);
+       setSize(400,550);
        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
        setLocationRelativeTo(null);
        setModal(true);
@@ -64,9 +61,12 @@ public class FrmProduct extends JDialog implements ActionListener
        btnOk = createButton(pnlButtons, "Ok");
        btnCancel = createButton(pnlButtons, "Cancelar");
 
+       JPanel pnlImage = new JPanel();
+       getContentPane().add(pnlImage, BorderLayout.NORTH);
+       imageBox = createImageBox(pnlImage);
+       
        JPanel panelField = new JPanel();
        getContentPane().add(panelField, BorderLayout.CENTER);
-       chooseImage = createFileChooser(panelField);
        txbCode = createField(panelField, "Código", 10);
        txbName = createField(panelField, "Nome", 25);
        txbDescription = createField(panelField, "Descrição", 25);
@@ -85,7 +85,7 @@ public class FrmProduct extends JDialog implements ActionListener
        txbCode.setText(""+p.getCode());
        txbPrice.setText(""+p.getPrice());
        txbDescription.setText(p.getDescription());
-       //txbImage.setText(""+p.getNota2());
+       imageBox.setImage(ImageService.bytestoImage(p.getImage()));
     }
 
     private void updateObject(Product p)
@@ -94,6 +94,7 @@ public class FrmProduct extends JDialog implements ActionListener
        p.setCode(Integer.parseInt(txbCode.getText()));
        p.setDescription(txbDescription.getText());
        p.setPrice(Float.parseFloat(txbPrice.getText()));
+       p.setImage(ImageService.imagetobytes(imageBox.getResource()));
     }
 
     private static FrmProduct frame=null;

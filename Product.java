@@ -33,7 +33,7 @@ public class Product{
 		db.insertProduct(p);
 	}
 
-	public void removeProduct(int code){
+	public void deleteProduct(int code){
 		db.deleteProduct(code);
 	}
 

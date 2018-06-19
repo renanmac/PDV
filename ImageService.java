@@ -2,6 +2,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
+import java.awt.*;
 
 public class ImageService{
 	
@@ -20,9 +21,14 @@ public class ImageService{
 		}	
 	}
 
-	public static ImageIcon bytestoimage(byte[] b){
-		ImageIcon img = new ImageIcon(b);
-		return img;
+	public static Image bytestoImage(byte[] b){
+		try{
+			InputStream input = new ByteArrayInputStream(b);
+			Image img = ImageIO.read(input);
+			return img;
+		}catch(Exception e){
+			return null;
+		}
 	}
 
 	public static BufferedImage imagefromPath(String path){
