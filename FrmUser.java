@@ -87,7 +87,6 @@ public class FrmUser extends JDialog implements ActionListener
        txbUsername.setText(u.getUsername());
        txbPassword.setText(u.getPassword());
        chkBlock.setState(u.getBlock()==1?true:false);
-       //txbImage.setText(""+p.getNota2());
     }
 
     private void updateObject(User u){
@@ -111,7 +110,7 @@ public class FrmUser extends JDialog implements ActionListener
        return frame.Resp;
     }
 
-    public static void main(String s[])
+/*    public static void main(String s[])
     {
        User a = new User();
        a.setName("Usuario");
@@ -128,5 +127,5 @@ public class FrmUser extends JDialog implements ActionListener
        System.out.println("Senha: "+a.getPassword());
        System.out.println("Bloqueado? "+a.getBlock());
        System.exit(0);
-    }
+    }*/
 }

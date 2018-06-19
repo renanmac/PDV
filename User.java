@@ -62,8 +62,18 @@ public class User{
 		return db.getUser(cpf);
 	}
 
+	public User getUserLike(String text){
+		return db.getUserLike(text);
+	}
+
 	public void dropDB(){
 		db.dropDB("Users");
 	}
 
+	/*public static void main(String args[]){
+		User u = new User();
+		u = u.getUserLike("jedi");
+		System.out.println(u.getName());
+	}
+*/
 }

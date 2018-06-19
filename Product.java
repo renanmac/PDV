@@ -49,6 +49,10 @@ public class Product{
 		return db.getProduct(code);
 	}
 
+	public Product getProductLike(String text){
+		return db.getProductLike(text);
+	}
+
 	public void dropDB(){
 		db.dropDB("Products");
 	}

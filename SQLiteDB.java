@@ -515,6 +515,65 @@ public class SQLiteDB
     }
   }
 
+  public User getUserLike(String text){
+    User u=null;
+    try{
+      Connection conn = DriverManager.getConnection(_STR_CONEXAO_);
+      if (conn != null) {
+        PreparedStatement stmt = conn.prepareStatement("select Name, CPF, Username, Password, Profile, Block from Users where (Name like ? or Username like ? or CPF like ?)");
+        stmt.setString(1,"%" + text + "%");
+        stmt.setString(2,"%" + text + "%");
+        stmt.setString(3,"%" + text + "%");
+        ResultSet result = stmt.executeQuery();
+        if(result.next()){
+          u = new User();
+          u.setName(result.getString(1));
+          u.setCPF(result.getString(2));
+          u.setUsername(result.getString(3));
+          u.setPassword(result.getString(4));
+          u.setProfile(result.getInt(5));
+          u.setBlock(result.getInt(6));
+        }
+        stmt.close();
+      }
+      conn.close();
+      return u;
+    }catch(Exception e){
+      e.printStackTrace();
+      System.exit(0);
+      return null;
+    }
+  }  
+
+  public Product getProductLike(String text){
+    Product p=null;
+    try{
+      Connection conn = DriverManager.getConnection(_STR_CONEXAO_);
+      if (conn != null) {
+        PreparedStatement stmt = conn.prepareStatement("select Name, Code, Description, Price, Image from Products where (Name like ? or Description like ? or Code like ?)");
+        stmt.setString(1,"%" + text + "%");
+        stmt.setString(2,"%" + text + "%");
+        stmt.setString(3,"%" + text + "%");
+        ResultSet result = stmt.executeQuery();
+        if(result.next()){
+          p = new Product();
+          p.setName(result.getString(1));
+          p.setCode(result.getInt(2));
+          p.setDescription(result.getString(3));
+          p.setPrice(result.getFloat(4));
+          p.setImage(result.getBytes(5));
+        }
+        stmt.close();
+      }
+      conn.close();
+      return p;
+    }catch(Exception e){
+      e.printStackTrace();
+      System.exit(0);
+      return null;
+    }
+  }
+
     // ************** Drop Table ************** 
 
     public void dropDB(String name){

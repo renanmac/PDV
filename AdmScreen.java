@@ -108,6 +108,14 @@ public class AdmScreen extends JFrame implements ActionListener{
 				}
 			} 
 		}else if (btn==btnBuscar){
+			String text = JOptionPane.showInputDialog("Buscar produto: ");
+			Product p = new Product();
+			p = p.getProductLike(text);
+			if(p == null){
+				JOptionPane.showMessageDialog(null, "Nenhum Registro Encontrado");
+			}else{
+				FrmProduct.execute(p);
+			}
 		}else if (btn==btnImportar){
 			ProdTXT txt = new ProdTXT("produtos.txt");
 			txt.importar();
@@ -149,15 +157,19 @@ public class AdmScreen extends JFrame implements ActionListener{
 		}
 		else if (btn==btnBuscaru)
 		{
+			String text = JOptionPane.showInputDialog("Buscar usuário: ");
+			User u = new User();
+			u = u.getUserLike(text);
+			if(u == null){
+				JOptionPane.showMessageDialog(null, "Nenhum Registro Encontrado");
+			}else{
+				FrmUser.execute(u);
+			}
 		}
 		else if (btn==btnSairu)
 		{
 			setVisible(false);
-		}/*else if (btn==btnUsuarios){
-			usersScreen();
-		}else if (btn==btnProdutos){
-			productsScreen();
-		}*/
+		}
 	}
 
 	public static void main(String s[]){
