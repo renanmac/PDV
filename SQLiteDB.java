@@ -356,7 +356,7 @@ public class SQLiteDB
           u.setName(result.getString(1));
           u.setCPF(result.getString(2));
           u.setUsername(result.getString(3));
-          u.setPassword(result.getString(4));
+          u.setPasswordDB(result.getString(4));
           u.setProfile(result.getInt(5));
           u.setBlock(result.getInt(6));
         }
@@ -448,7 +448,7 @@ public class SQLiteDB
         User u = new User();
         u.setName(result.getString(1));
         u.setCPF(result.getString(2));
-        u.setPassword(result.getString(3));
+        u.setPasswordDB(result.getString(3));
         u.setUsername(result.getString(4));
         u.setProfile(result.getInt(5));
         u.setBlock(result.getInt(6));
@@ -530,7 +530,7 @@ public class SQLiteDB
           u.setName(result.getString(1));
           u.setCPF(result.getString(2));
           u.setUsername(result.getString(3));
-          u.setPassword(result.getString(4));
+          u.setPasswordDB(result.getString(4));
           u.setProfile(result.getInt(5));
           u.setBlock(result.getInt(6));
         }

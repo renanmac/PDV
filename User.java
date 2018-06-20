@@ -21,6 +21,7 @@ public class User{
 	public void setCPF(String cpf)       	{ CPF = cpf;}
 	public void setUsername(String user) 	{ Username = user;}
 	public void setPassword(String password){ Password = hashpass(password);} 
+	public void setPasswordDB(String password){ Password = password;} 
 	public void setProfile(int profile)  	{ 
 		if(profile>=0 && profile<=2)
 			Profile = profile;
