@@ -19,23 +19,23 @@ public class SQLiteDB
 
     SQLiteDB db = new SQLiteDB();
     try{
-      User u = new User();
-      u.setName("User1");
+      /*User u = new User();
+      u.setName("Administrador");
       u.setBlock(0);
-      u.setCPF("123");
-      u.setUsername("user");
-      u.setPassword("senha");
-      u.setProfile(1);
+      u.setCPF("123456");
+      u.setUsername("admin");
+      u.setPassword("admin");
+      u.setProfile(0);
       db.insertUser(u);
 
       User u2 = new User();
-      u2.setName("UserJedi");
+      u2.setName("Operador");
       u2.setBlock(0);
-      u2.setCPF("321");
-      u2.setUsername("jedi");
-      u2.setPassword("tralala");
-      u2.setProfile(2);
-      db.insertUser(u2);
+      u2.setCPF("654321");
+      u2.setUsername("operador");
+      u2.setPassword("operador");
+      u2.setProfile(1);
+      db.insertUser(u2);*/
 
       Product p = new Product();
       p.setCode(1151);
@@ -72,8 +72,8 @@ public class SQLiteDB
       e.printStackTrace();
       System.exit(0);
     }
-  }
-*/
+  }*/
+
   public SQLiteDB(){
     try{
       //1. carregar para a memoria a classe do driver JDBC org.sqlite.JDBC
